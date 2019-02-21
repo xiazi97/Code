@@ -7,6 +7,6 @@ int main()
 
 	string file1 = "../test1.txt";
 	string file2 = "../test2.txt";
-	cout<<"Cos£º"<<test.getSimilarity(file1.c_str(),file2.c_str());
+	cout<<"CosÂ£Âº"<<test.getSimilarity(file1.c_str(),file2.c_str()) * 100 << "%";
 	return 0;
 }
