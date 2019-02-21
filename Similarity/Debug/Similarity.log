@@ -1,0 +1,17 @@
+﻿生成启动时间为 2019/2/19 15:40:46。
+     1>项目“C:\Users\李峰\Documents\Visual Studio 2012\Projects\Similarity\Similarity\Similarity\Similarity.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         D:\VS2012\VC\bin\CL.exe /c /I"C:\Users\李峰\Documents\Visual Studio 2012\Projects\Similarity\Similarity\cppjieba\include" /I"C:\Users\李峰\Documents\Visual Studio 2012\Projects\TextSimilarity\cppjieba\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\cppjieba\test\demo.cpp Similarity.cpp
+         Similarity.cpp
+         demo.cpp
+         正在生成代码...
+     1>c:\users\李峰\documents\visual studio 2012\projects\similarity\similarity\similarity\similarity.cpp(10): warning C4715: “fib”: 不是所有的控件路径都返回值
+       Link:
+         D:\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\李峰\Documents\Visual Studio 2012\Projects\Similarity\Similarity\Debug\Similarity.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\李峰\Documents\Visual Studio 2012\Projects\Similarity\Similarity\Debug\Similarity.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\李峰\Documents\Visual Studio 2012\Projects\Similarity\Similarity\Debug\Similarity.lib" /MACHINE:X86 Debug\demo.obj
+         Debug\Similarity.obj
+         Similarity.vcxproj -> C:\Users\李峰\Documents\Visual Studio 2012\Projects\Similarity\Similarity\Debug\Similarity.exe
+     1>已完成生成项目“C:\Users\李峰\Documents\Visual Studio 2012\Projects\Similarity\Similarity\Similarity\Similarity.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.93
