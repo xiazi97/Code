@@ -21,10 +21,10 @@ Similarity::Similarity(string dict)
 		    STOP_WORD_PATH)
 	,MaxWordsNum(10)
 {
-	getStopWord(STOP_WORD_PATH.c_str());      //³õÊ¼»¯Í£ÓÃ´Ê±í
+	getStopWord(STOP_WORD_PATH.c_str());      //åˆå§‹åŒ–åœç”¨è¯è¡¨
 }
 
-//»ñÈ¡´ÊÆµ
+//è·å–è¯é¢‘
 Similarity::wordfreq Similarity::getWordFreq(const char* filename)
 {
 	ifstream fin(filename);
@@ -41,10 +41,10 @@ Similarity::wordfreq Similarity::getWordFreq(const char* filename)
 		getline(fin,line);
 		//GBK-->UTF8
 		line = GBKToUTF8(line);
-		//·Ö´Ê
+		//åˆ†è¯
 		vector<string> words;
 		_jieba.Cut(line,words,true);
-		//Í³¼Æ´ÊÆµ£¬Í³¼ÆÊ±ÏÈ¶ÔÓ¦Í£ÓÃ´Ê±íÈ¥µôÍ£ÓÃ´Ê
+		//ç»Ÿè®¡è¯é¢‘ï¼Œç»Ÿè®¡æ—¶å…ˆå¯¹åº”åœç”¨è¯è¡¨å»æ‰åœç”¨è¯
 		for(const auto& e : words)
 		{
 			if(_StopWordSet.count(e) > 0)
@@ -60,38 +60,6 @@ Similarity::wordfreq Similarity::getWordFreq(const char* filename)
 		return freq;
 	}
 }
-	//ifstream fin(filename);
-	//if(!fin.is_open())
-	//{
-	//	cout << "Open File" << filename << "failed" << endl;
-	//	return wordfreq();  //´ò¿ªÎÄ¼şÊ§°ÜÔò·µ»ØÒ»¸ö¿ÕµÄmap(Ã»ÓĞÈÎºÎ´Ê»ã)
-	//}
-	//string line;
-	//wordfreq freq;
-	//while (!fin.eof())
-	//{
-	//	//¶ÁÈ¡²¢½øĞĞ·Ö´Ê,·Ö´ÊÇ°ĞèÒª×ªÂë
-	//	getline(fin,line);
-	//	//GBK---==>UTF8
-	//	line = GBKToUTF8(line);
-	//	vector<string> words;
-	//	_jieba.Cut(line,words,true);
-	//	//Í³¼Æ´ÊÆµ
-	//	for(const auto& e : words)
-	//	{
-	//		//Í³¼Æ´ÊÆµÊ±ÒªÈ¥µôÍ£ÓÃ´Ê
-	//		if(_StopWordSet.count(e) > 0)   //Èç¹û´æÔÚÍ£ÓÃ´Ê,·µ»ØÖµÎª1Ê±±íÊ¾´æÔÚ
-	//			continue;
-	//		else
-	//		{
-	//			if(freq.count(e) > 0)
-	//				freq[e]++;
-	//			else
-	//				freq[e] = 1;
-	//		}
-	//	}
-	//}
-	//return freq;
 
 string Similarity::GBKToUTF8(string str)
 {
@@ -155,7 +123,7 @@ void Similarity::getStopWord(const char* stopwordsFile)
 
 bool compare(pair<string,int> left,pair<string,int> right)
 {
-	return left.second > right.second;    //ÄæĞòÅÅĞò
+	return left.second > right.second;    //é€†åºæ’åº
 }
 
 vector<pair<string,int>> Similarity::sortByValue(wordfreq& freq)
@@ -172,18 +140,18 @@ void Similarity::selectWords(vector<pair<string,int>>& freqvector,wordset& wset)
 
 	for(int i=0;i<sz;i++)
 	{
-		wset.insert(freqvector[i].first);     //first¶ÔÓ¦µÄÊÇ´Ê(key)£¬second¶ÔÓ¦µÄÊÇ´ÊÆµ(value)
+		wset.insert(freqvector[i].first);     //firstå¯¹åº”çš„æ˜¯è¯(key)ï¼Œsecondå¯¹åº”çš„æ˜¯è¯é¢‘(value)
 	}
 }
 
 vector<double> Similarity::getOneHot(wordset& wset,wordfreq& freq)
 {
-	//±éÀúwsetÖĞµÄ´Ê£¬¸ù¾İ´ÊÆµ½¨Á¢ÏòÁ¿
+	//éå†wsetä¸­çš„è¯ï¼Œæ ¹æ®è¯é¢‘å»ºç«‹å‘é‡
 	vector<double> oneHot;
 	for(const auto& e : wset)
 	{
 		if(freq.count(e))
-			oneHot.push_back(freq[e]);     //´æ·Å´ÊÆµ
+			oneHot.push_back(freq[e]);     //å­˜æ”¾è¯é¢‘
 		else
 			oneHot.push_back(0);
 	}
@@ -221,13 +189,13 @@ double Similarity::getSimilarity(const char* file1,const char* file2)
 	vector<pair<string,int>> freqvector1 = sortByValue(wf1);
 	vector<pair<string,int>> freqvector2 = sortByValue(wf2);
 
-	cout << "freqvector1£º"<<endl;
+	cout << "freqvector1ï¼š"<<endl;
 	for(int i=0;i<MaxWordsNum;i++)
 	{
 		cout << UTF8ToGBK(freqvector1[i].first)<<":"<<freqvector1[i].second <<"\t";
 	}
 	cout<<endl;
-	cout << "freqvector2£º"<<endl;
+	cout << "freqvector2ï¼š"<<endl;
 	for(int i=0;i<MaxWordsNum;i++)
 	{
 		cout << UTF8ToGBK(freqvector1[i].first)<<":"<<freqvector1[i].second <<"\t";
