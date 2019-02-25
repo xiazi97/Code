@@ -15,13 +15,13 @@ Similarity::Similarity(string dict)
 	,IDF_PATH(dict + "/idf.utf8")
 	,STOP_WORD_PATH(dict + "/stop_words.utf8")
 	,_jieba(DICT_PATH,
-		    HMM_PATH,
-			USER_DICT_PATH,
-			IDF_PATH,
-		    STOP_WORD_PATH)
+		HMM_PATH,
+		USER_DICT_PATH,
+		IDF_PATH,
+		STOP_WORD_PATH)
 	,MaxWordsNum(10)
 {
-	getStopWord(STOP_WORD_PATH.c_str());      //初始化停用词表
+	getStopWord(STOP_WORD_PATH.c_str());      //初始化停用词表，将停用词文件中的放入表中
 }
 
 //获取词频
